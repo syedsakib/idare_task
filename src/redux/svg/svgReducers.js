@@ -1,21 +1,21 @@
-import companyTypes from './companyTypes';
+import svgTypes from './svgTypes';
 
 const INITIAL_STATE = {};
 
 const svgReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case companyTypes.FETCH_COMPANY_REQUEST:
+    case svgTypes.FETCH_SVG_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    case companyTypes.FETCH_COMPANY_SUCCESS:
+    case svgTypes.FETCH_SVG_SUCCESS:
       return {
         loading: false,
         error: '',
-        companyInfo: action.payload,
+        svgInfo: action.payload,
       };
-    case companyTypes.FETCH_COMPANY_FAILURE:
+    case svgTypes.FETCH_SVG_FAILURE:
       return {
         ...state,
         loading: false,
