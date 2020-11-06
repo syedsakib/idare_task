@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { parse } from 'papaparse';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchSvgSuccess } from '../redux/svg/svgActions';
 
-const SvgComponent = ({ props }) => {
+const SvgComponent = ({ count1, count2 }) => {
   const [contacts, setContacts] = useState([]);
   const [maxX, setmaxX] = useState(0);
   const [minX, setminX] = useState(0);
@@ -59,6 +59,7 @@ const SvgComponent = ({ props }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchSvgSuccess({ maxX, minX, maxY, minY, maxZ, minZ }));
+    count1();
   };
 
   return (
@@ -130,14 +131,25 @@ const SvgComponent = ({ props }) => {
         <div className='pb-5'>
           <input type='file' id='file' onChange={handleChange} />
         </div>
-        <button
-          className='btn btn-lg btn-secondary'
-          type='submit'
 
-          //disabled={count === 2}
-        >
-          SUBMIT
-        </button>
+        <div className='row d-flex justify-content-around '>
+          <button
+            className='btn btn-lg btn-secondary'
+            type='submit'
+            onClick={count2}
+            //disabled={count === 2}
+          >
+            PREVIOUS
+          </button>
+          <button
+            className='btn btn-lg btn-secondary'
+            type='submit'
+            // onClick={count1}
+            //disabled={count === 2}
+          >
+            NEXT
+          </button>
+        </div>
       </form>
     </div>
   );

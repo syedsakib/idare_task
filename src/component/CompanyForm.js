@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchCompanySuccess } from '../redux/company/companyActions';
 
-const CompanyForm = () => {
+const CompanyForm = ({ count }) => {
   const [productName, setProductName] = useState('');
   const [productDetails, setProductDetails] = useState('');
   const [client, setClient] = useState('');
@@ -16,11 +16,13 @@ const CompanyForm = () => {
     dispatch(
       fetchCompanySuccess({ productName, productDetails, client, contractor })
     );
+    count();
   };
 
   return (
     <>
       <div className='container'>
+        <h1 className='py-4 '>Company Information</h1>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
             <label>Peoject Name</label>
@@ -62,14 +64,20 @@ const CompanyForm = () => {
               onChange={(e) => setContractor(e.target.value)}
             />
           </div>
-          <button
-            className='btn btn-lg btn-secondary'
-            type='submit'
 
-            //disabled={count === 2}
-          >
-            SUBMIT
-          </button>
+          <div className='row justify-content-center'>
+            {count !== 1 && (
+              <button
+                className='btn btn-lg btn-secondary'
+                type='submit'
+                //   onClick={count}
+
+                //disabled={count === 2}
+              >
+                NEXT
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </>
